@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="./bootstrap-4.3.1-dist/css/bootstrap.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <form class="form-group" id="form">
+            <label for="">Email:</label><input type="text" class="form-control" id="emails" placeholder="Enter email">
+            <div class="badge d-none text-danger" id="email-check">name required!</div><br>
+            <label for="">Password:</label><input type="password" class="form-control" id="password" placeholder="Enter password">
+            <div class="badge d-none text-danger" id="password-check">password required!</div> <br>
+            <input type="submit" class="btn btn-danger mt-3" id="submit">
+        </form>
+    </div>
+    <script>
+        const emails = document.getElementById("emails");
+        const password = document.getElementById("password");
+        const form = document.getElementById("form");
+
+        form.addEventListener("submit",handleSubmit);
+        function handleSubmit(event){
+            event.preventDefault();
+            emails.value;
+            password.value;
+            if(emails.value === ""){
+                document.getElementById("email-check").classList.remove('d-none');
+            }
+            else{
+               if(!validateEmail(emails.value)){
+                   emails.classList.add('border-danger');
+                   alert("Email must include '@' and your valid domain hoster");
+                   return;
+               }
+            }
+            if(password.value === ""){
+                document.getElementById("password-check").classList.remove('d-none');
+                return;
+            }
+            if(emails.value === CREDENTIALS.EMAIL && password.value === CREDENTIALS.PASSWORD){
+               window.location.href = "./index2.html";
+            } 
+            else {
+                console.log("Email or password incorrect! Try again");
+            }
+        }
+
+        function validateEmail(){
+            if(/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(emails.value)){
+                return true;
+            }
+             return false;   
+        }
+
+        CREDENTIALS = {
+        "EMAIL" : "despa@mail.com",
+        "PASSWORD" : "deeznuts",
+    
+    }
+    </script>
+    
+    
+</body>
+</html>
